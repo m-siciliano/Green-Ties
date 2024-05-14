@@ -1,0 +1,38 @@
+---
+title: "Untitled"
+author: "Michael D. Siciliano"
+institute: Networks and Governance Lab, University of Illinois Chicago
+format: html
+editor: source
+---
+
+## Libraries and Data
+
+```{r}
+library(tidyverse)
+library(patchwork)
+library(gtsummary)
+library(modelsummary)
+library(marginaleffects)
+
+dat = read_csv("data/green_ties_data.csv")
+```
+
+
+
+## Descriptive Table
+
+
+
+
+## Figures
+
+
+
+
+## Electric Vehicle Models
+
+
+
+
+## Flooding Models
