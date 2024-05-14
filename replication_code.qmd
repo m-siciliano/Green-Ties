@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "Replication Code for Local Governance and Green Ties"
 author: "Michael D. Siciliano"
 institute: Networks and Governance Lab, University of Illinois Chicago
 format: html
