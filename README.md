@@ -1,6 +1,6 @@
 # Green-Ties
 
-This repository contains replication code and data for the Local Governance and Green Ties Project.
+This repository contains replication code and data for the Local Governance and Green Ties Project. The project team consists of Michael D. Siciliano (University of Illinois Chicago), Mashal-E-Zehra (Univeristy of Illinois Chicago), Raul Gutierrez-Meave (University of Illinois Chicago), Aaron Deslatte (Indiana University), and Rachel Krause (University of Kansas). 
 
 The variables contained in the dataset are:
 
