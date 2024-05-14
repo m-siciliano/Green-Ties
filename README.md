@@ -1,6 +1,6 @@
 # Green-Ties
 
-This repository contains open data for the Local Governance and Green Ties Project.
+This repository contains replication code and data for the Local Governance and Green Ties Project.
 
 The variables contained in the dataset are:
 
