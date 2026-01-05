@@ -85,14 +85,14 @@ desc.table
 ```{r}
 #| echo: true
 
-ev1 = ggplot(ego.3, aes(x = ev_netsize)) + geom_bar(fill = "darkgrey", alpha = .8) + 
+ev1 = ggplot(dat, aes(x = ev_netsize)) + geom_bar(fill = "darkgrey", alpha = .8) + 
   labs(y = "Count",
        x = "External Network Size - EV") +
   theme_bw() + 
     theme(text = element_text(size = 12)) + 
   scale_y_continuous(limits = c(0, 135))
 
-fl1 = ggplot(ego.3, aes(x = flood_netsize)) + geom_bar(fill = "darkgrey", alpha = .8) + 
+fl1 = ggplot(dat, aes(x = flood_netsize)) + geom_bar(fill = "darkgrey", alpha = .8) + 
   labs(y = "Count",
        x = "External Network Size - Flooding") +
   theme_bw() + 
@@ -113,7 +113,8 @@ QuasiPoisson Models:
 ```{r}
 #| echo: true
 
-mod1.ev = glm(ev_netsize ~ tot_ev_units + dedicated.staffing, data = dat, family = quasipoisson(link = "log"))
+mod1.ev = glm(ev_netsize ~ tot_ev_units + dedicated.staffing, 
+              data = dat, family = quasipoisson(link = "log"))
 
 mod2.ev = glm(ev_netsize ~ tot_ev_units + dedicated.staffing + 
                 grantwriter_dummy + 
@@ -147,6 +148,7 @@ mod4.ev = glm(ev_netsize ~ tot_ev_units + dedicated.staffing +
 modelsummary(list("EV - 1" = mod1.ev, "EV - 2" = mod2.ev, 
                   "EV - 3" = mod3.ev, "EV - 4" = mod4.ev),
              estimate = "{estimate} ({std.error}) {stars}",
+             vcov = ~state,
              statistic = NULL,
              stars = T, fmt = 2,
              align="lllll",
@@ -170,8 +172,7 @@ Average Marginal Effects:
 ```{r}
 #| echo: true
 
-mx.mod3.ev = slopes(mod3.ev)
-modelsummary(mx.mod3.ev,
+modelsummary(avg_slopes(mod3.ev, vcov = ~state),
              estimate = "{estimate} ({std.error}) {stars}",
              statistic = NULL,
              stars = T, fmt = 2,
@@ -191,10 +192,10 @@ modelsummary(mx.mod3.ev,
 
 
 #update model output above to capture the interaction effects
-slopes(mod4.ev, variables = "dedicated.staffing", 
+slopes(mod4.ev, vcov = ~ state, variables = "dedicated.staffing", 
                 by = "centralized.staffing")
 
-slopes(mod3.ev, variables = "tot_ev_units", 
+slopes(mod3.ev, vcov = ~ state, variables = "tot_ev_units", 
                 by = "centralized.staffing")
 ```
 
@@ -240,6 +241,7 @@ mod4.fl = glm(flood_netsize ~ tot_fl_units + dedicated.staffing +
 modelsummary(list("Flood - 1" = mod1.fl, "Flood - 2" = mod2.fl, 
                   "Flood - 3" = mod3.fl, "Flood - 4" = mod4.fl), 
              estimate = "{estimate} ({std.error}) {stars}",
+             vcov = ~state,
              statistic = NULL,
              stars = T, fmt = 2,
              align="lllll",
@@ -266,8 +268,7 @@ Average Marginal Effects:
 ```{r}
 #| echo: true
 
-mx.mod2.fl = slopes(mod2.fl)
-modelsummary(mx.mod2.fl,
+modelsummary(avg_slopes(mod2.fl, vcov = ~ state),
              estimate = "{estimate} ({std.error}) {stars}",
              statistic = NULL,
              stars = T, fmt = 2,
