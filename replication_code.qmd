@@ -85,19 +85,23 @@ desc.table
 ```{r}
 #| echo: true
 
-ev1 = ggplot(dat, aes(x = ev_netsize)) + geom_bar(fill = "darkgrey", alpha = .8) + 
+ev1 = ggplot(ego.3, aes(x = ev_netsize)) + geom_bar(fill = "darkgrey", alpha = .8) + 
   labs(y = "Count",
-       x = "EV Network Size") +
+       x = "External Network Size - EV") +
   theme_bw() + 
-    theme(text = element_text(size = 12))
+    theme(text = element_text(size = 12)) + 
+  scale_y_continuous(limits = c(0, 135))
 
-fl1 = ggplot(dat, aes(x = flood_netsize)) + geom_bar(fill = "darkgrey", alpha = .8) + 
+fl1 = ggplot(ego.3, aes(x = flood_netsize)) + geom_bar(fill = "darkgrey", alpha = .8) + 
   labs(y = "Count",
-       x = "Flood Network Size") +
+       x = "External Network Size - Flooding") +
   theme_bw() + 
-  theme(text = element_text(size = 12))
+  theme(text = element_text(size = 12)) + 
+  scale_y_continuous(limits = c(0, 135))
 
-ev1 + fl1 
+hist.plot = ev1 + fl1 
+
+hist.plot
 ```
 
 
